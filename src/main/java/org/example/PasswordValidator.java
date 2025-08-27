@@ -50,13 +50,15 @@ public final class PasswordValidator {
     }
 
     //Cheks if the Password contains a Special Character
-    public static boolean containsSpecialCharacter(String password){
+    public static boolean containsSpecialCharacter(String password, char[] allowed){
         if(isEmptyPassword(password)){
             return false;
         }
         for(char c : password.toCharArray()){
-            if(!Character.isDigit(c) && !Character.isLetter(c) ){
-                return true;
+            for(char allowedChar : allowed){
+                if(c == allowedChar){
+                    return true;
+                }
             }
         }
         return false;
@@ -101,6 +103,11 @@ public final class PasswordValidator {
         return commonPasswords;
     };
 
+    private static char[] getSpecialCharacters(){
+        char[] specialCharacters = {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', '"', '\'', '<', '>', ',', '.', '?'};
+        return specialCharacters;
+    }
+
 
     //Ruft die anderen Methoden auf Schnittstelle nach draußen
     public static boolean isValid(String password){
@@ -110,7 +117,7 @@ public final class PasswordValidator {
         int minLeng = 8;
         return containsDigit(password) &&
                 containsUpperCaseAndLowerCase(password) &&
-                containsSpecialCharacter(password) &&
+                containsSpecialCharacter(password, getSpecialCharacters()) &&
                 hasMinLength(password, minLeng);
 
     }
