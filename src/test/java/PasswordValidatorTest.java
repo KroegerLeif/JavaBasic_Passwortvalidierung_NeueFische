@@ -21,11 +21,10 @@ public class PasswordValidatorTest {
                 9
         };
 
-        boolean[] expected = {
-                true,
-                true,
-                true
-        };
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = true;
+        }
 
         //When
         boolean[] actual = new boolean[passwords.length];
@@ -54,11 +53,10 @@ public class PasswordValidatorTest {
                 11
         };
 
-        boolean[] expected = {
-                false,
-                false,
-                false
-        };
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = false;
+        }
 
         //When
         boolean[] actual = new boolean[passwords.length];
@@ -119,13 +117,10 @@ public class PasswordValidatorTest {
                 "123456789"
         };
 
-        boolean[] expected = {
-                true,
-                true,
-                true,
-                true,
-                true
-        };
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = true;
+        }
 
         //When
         boolean[] actual = new boolean[passwords.length];
@@ -150,5 +145,76 @@ public class PasswordValidatorTest {
         assertEquals(expected, actual);
     }
 
+    //3.3 Groß und Kleinbuchstaben
+    @Test
+    void containsUpperCaseAndLowerCase_checksForNull_givenANullString(){
+        //Given
+        String password = null;
+        boolean expected = false;
+        //When
+        boolean actual = PasswordValidator.containsUpperCaseAndLowerCase(password);
+        //Then
+        assertEquals(expected, actual);
+    }
 
+    @Test
+    void containsUpperCaseAndLowerCase_returnTrue_cheksWithValidText(){
+        //Given
+        String[] passwords = {
+                "Ab",
+                "bA",
+                "Hallo",
+                "ooooH",
+                "1aaaB",
+                "1AAAb"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = true;
+        }
+
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.containsUpperCaseAndLowerCase(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    @Test
+    void containsUpperCaseAndLowerCase_returnFalse_cheksWithInvalidText(){
+        //Given
+        String[] passwords = {
+                "AAAA",
+                "bbbbb",
+                "A",
+                "a",
+                "11",
+                "1y",
+                "1Y"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = false;
+        }
+
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.containsUpperCaseAndLowerCase(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
 }
