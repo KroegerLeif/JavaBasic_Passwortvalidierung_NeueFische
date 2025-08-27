@@ -49,7 +49,7 @@ public final class PasswordValidator {
         }return false;
     }
 
-    //TODO Bonus Aufgaben
+    //Cheks if the Password contains a Special Character
     public static boolean containsSpecialCharacter(String password){
         if(isEmptyPassword(password)){
             return false;
@@ -110,6 +110,7 @@ public final class PasswordValidator {
         int minLeng = 8;
         return containsDigit(password) &&
                 containsUpperCaseAndLowerCase(password) &&
+                containsSpecialCharacter(password) &&
                 hasMinLength(password, minLeng);
 
     }
