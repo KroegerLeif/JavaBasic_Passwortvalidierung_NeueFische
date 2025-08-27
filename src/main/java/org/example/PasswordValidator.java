@@ -93,6 +93,12 @@ public final class PasswordValidator {
 
 
     //Ruft die anderen Methoden auf Schnittstelle nach draußen
-    public static boolean isValid(String password){return false;};
+    public static boolean isValid(String password){
+        if(isCommonPassword(password)){
+            return false;
+        }
+        int minLeng = 6;
+        return containsDigit(password) && containsUpperCaseAndLowerCase(password) && hasMinLength(password, minLeng);
+    }
 
 }

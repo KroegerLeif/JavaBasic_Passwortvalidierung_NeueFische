@@ -285,4 +285,62 @@ public class PasswordValidatorTest {
             assertEquals(expected[i], actual[i]);
         }
     }
+
+    @Test
+    void isValid_returnFalse_wrongPasswords(){
+        //Given
+        //Password Length = 6
+        String[] passwords = {
+                "",
+                "pp",
+                "password1",
+                "PASSWORDAREDIFICULT",
+                "ggggggggggg",
+                "11111111111111"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = false;
+        }
+
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.isValid(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    @Test
+    void isValid_returnTrue_strongPasswords(){
+        //Given
+        //Password Length = 6
+        String[] passwords = {
+                "Dificult5",
+                "12Hnbldfe"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = true;
+        }
+
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.isValid(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
 }
