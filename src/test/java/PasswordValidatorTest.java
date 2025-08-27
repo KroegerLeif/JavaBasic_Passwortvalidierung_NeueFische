@@ -217,4 +217,72 @@ public class PasswordValidatorTest {
             assertEquals(expected[i], actual[i]);
         }
     }
+
+    //3.4 Häufige Passwörter
+    @Test
+    void isCommonPassword_checksForNull_givenANullString(){
+        //Given
+        String password = null;
+        boolean expected = false;
+        //When
+        boolean actual = PasswordValidator.isCommonPassword(password);
+        //Then
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void isCommonPassword_returnTrue_givenAComenPassword(){
+        //Given
+        String[] passwords = {
+                "Password",
+                "password1",
+                "password123",
+                "geheim",
+                "Geheim"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = true;
+        }
+
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.isCommonPassword(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    @Test
+    void isCommonPassword_returnFalse_givenAUncommenPassword(){
+        //Given
+        String[] passwords = {
+                "adf34fdf",
+                "password1234",
+                "1password1",
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = false;
+        }
+
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.isCommonPassword(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
 }

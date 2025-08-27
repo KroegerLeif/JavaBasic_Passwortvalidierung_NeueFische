@@ -36,7 +36,18 @@ public final class PasswordValidator {
     }
 
 
-    public static boolean isCommonPassword(String password){return false;};
+    //Checks if the Password is a Common Password
+    public static boolean isCommonPassword(String password){
+        if(isEmptyPassword(password)){
+            return false;
+        }
+        String[] commonPasswords = getCommenPasswords();
+        for(String commonPassword : commonPasswords){
+            if(commonPassword.equals(password)){
+                return true;
+            }
+        }return false;
+    }
 
     //TODO Bonus Aufgaben
     public static boolean containsSpecialCharacter(String password){return false;};
@@ -65,6 +76,20 @@ public final class PasswordValidator {
             }
         }return false;
     }
+
+    private static String[] getCommenPasswords(){
+        //TODO Get A List from an External File
+        String[] commonPasswords = {
+               "123456",
+               "admin",
+                "Password",
+                "password1",
+                "password123",
+                "geheim",
+                "Geheim"
+        };
+        return commonPasswords;
+    };
 
 
     //Ruft die anderen Methoden auf Schnittstelle nach draußen
