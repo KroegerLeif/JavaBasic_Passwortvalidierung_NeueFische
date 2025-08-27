@@ -7,7 +7,7 @@ public class PasswordValidatorTest {
 
     //3.1 Mindestlänge
     @Test
-    void testMinLength_checksCorrectLength_givenCorrectLength() {
+    void minLength_checksCorrectLength_givenCorrectLength() {
         //Given
         String[] passwords = {
                 "1234567",
@@ -40,7 +40,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void testMinLength_checksCorrectLength_givenIncorrectLength() {
+    void minLength_checksCorrectLength_givenIncorrectLength() {
         //Given
         String[] passwords = {
                 "1234567",
@@ -73,7 +73,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void tesMinLength_checksForNull_givenANullString(){
+    void minLength_checksForNull_givenANullString(){
         //Given
         String password = null;
         int minLength = 10;
@@ -85,7 +85,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void testMinLength_cheksEmptyString_givenEmptyString(){
+    void minLength_cheksEmptyString_givenEmptyString(){
         //Given
         String password = "";
         int minLength = 0;
@@ -98,7 +98,7 @@ public class PasswordValidatorTest {
 
     //3.2 Ziffern enthalten
     @Test
-    void testContainsDigit_checksForNull_givenANullString(){
+    void containsDigit_checksForNull_givenANullString(){
         //Given
         String password = null;
         boolean expected = false;
@@ -109,7 +109,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void testContainsDigit_checksForDigit_givenADigit(){
+    void containsDigit_checksForDigit_givenADigit(){
         //Given
         String[] passwords = {
                 "1",
@@ -140,7 +140,7 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void testContainsDigit_checksForNoDigit_givenNoDigit(){
+    void containsDigit_checksForNoDigit_givenNoDigit(){
         //Given
         String password = "Password";
         boolean expected = false;
@@ -149,4 +149,6 @@ public class PasswordValidatorTest {
         //Then
         assertEquals(expected, actual);
     }
+
+
 }
