@@ -1,7 +1,5 @@
 # Passwortvalidierung
 
-# Passwortvalidierung
-
 Programm zur Passwortvalidierung in Java als Teil des Java Basics Abschnitts.
 
 ## Beschreibung
