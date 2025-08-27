@@ -50,7 +50,17 @@ public final class PasswordValidator {
     }
 
     //TODO Bonus Aufgaben
-    public static boolean containsSpecialCharacter(String password){return false;};
+    public static boolean containsSpecialCharacter(String password){
+        if(isEmptyPassword(password)){
+            return false;
+        }
+        for(char c : password.toCharArray()){
+            if(!Character.isDigit(c) && !Character.isLetter(c) ){
+                return true;
+            }
+        }
+        return false;
+    }
 
     //Hilfsmethoden
     private static boolean isEmptyPassword(String password){
@@ -80,8 +90,8 @@ public final class PasswordValidator {
     private static String[] getCommenPasswords(){
         //TODO Get A List from an External File
         String[] commonPasswords = {
-               "123456",
-               "admin",
+                "123456",
+                "admin",
                 "Password",
                 "password1",
                 "password123",
@@ -97,8 +107,11 @@ public final class PasswordValidator {
         if(isCommonPassword(password)){
             return false;
         }
-        int minLeng = 6;
-        return containsDigit(password) && containsUpperCaseAndLowerCase(password) && hasMinLength(password, minLeng);
+        int minLeng = 8;
+        return containsDigit(password) &&
+                containsUpperCaseAndLowerCase(password) &&
+                hasMinLength(password, minLeng);
+
     }
 
 }

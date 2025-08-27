@@ -289,7 +289,7 @@ public class PasswordValidatorTest {
     @Test
     void isValid_returnFalse_wrongPasswords(){
         //Given
-        //Password Length = 6
+        //Password Length = 8
         String[] passwords = {
                 "",
                 "pp",
@@ -320,10 +320,10 @@ public class PasswordValidatorTest {
     @Test
     void isValid_returnTrue_strongPasswords(){
         //Given
-        //Password Length = 6
+        //Password Length = 8
         String[] passwords = {
-                "Dificult5",
-                "12Hnbldfe"
+                "Dificultadf5",
+                "12Hnblerwdfe"
         };
 
         boolean[] expected = new boolean[passwords.length];
@@ -336,6 +336,68 @@ public class PasswordValidatorTest {
         boolean[] actual = new boolean[passwords.length];
         for(int i = 0; i < actual.length; i++) {
             actual[i] = PasswordValidator.isValid(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    //Bonus Spezial Characters
+    @Test
+    void vontainsSpecialCharacter_checksForNull_givenANullString(){
+        //Given
+        String password = null;
+        boolean expected = false;
+        //When
+        boolean actual = PasswordValidator.containsSpecialCharacter(password);
+        //Then
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void vontainsSpecialCharacter_true_password_withSpecialCharacter(){
+        //Given
+        String[] passwords = {
+                "Dificu&ltadf5",
+                "12$Hnblerwdfe"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = true;
+        }
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.containsSpecialCharacter(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    @Test
+    void vontainsSpecialCharacter_false_password_withOutSpecialCharacter(){
+        //Given
+        String[] passwords = {
+                "Dificultadf5",
+                "12Hnblerwdfe"
+        };
+
+        boolean[] expected = new boolean[passwords.length];
+        for(int i = 0; i < expected.length; i++) {
+            expected[i] = false;
+        }
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.containsSpecialCharacter(passwords[i]);
         }
 
         //Then
