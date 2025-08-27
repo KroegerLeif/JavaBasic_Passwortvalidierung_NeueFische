@@ -95,4 +95,58 @@ public class PasswordValidatorTest {
         //Then
         assertEquals(expected, actual);
     }
+
+    //3.2 Ziffern enthalten
+    @Test
+    void testContainsDigit_checksForNull_givenANullString(){
+        //Given
+        String password = null;
+        boolean expected = false;
+        //When
+        boolean actual = PasswordValidator.containsDigit(password);
+        //Then
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testContainsDigit_checksForDigit_givenADigit(){
+        //Given
+        String[] passwords = {
+                "1",
+                "12",
+                "abc1",
+                "absce3sdf",
+                "123456789"
+        };
+
+        boolean[] expected = {
+                true,
+                true,
+                true,
+                true,
+                true
+        };
+
+        //When
+        boolean[] actual = new boolean[passwords.length];
+        for(int i = 0; i < actual.length; i++) {
+            actual[i] = PasswordValidator.containsDigit(passwords[i]);
+        }
+
+        //Then
+        for(int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    @Test
+    void testContainsDigit_checksForNoDigit_givenNoDigit(){
+        //Given
+        String password = "Password";
+        boolean expected = false;
+        //When
+        boolean actual = PasswordValidator.containsDigit(password);
+        //Then
+        assertEquals(expected, actual);
+    }
 }
