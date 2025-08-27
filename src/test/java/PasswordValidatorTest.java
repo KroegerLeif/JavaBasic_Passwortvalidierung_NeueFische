@@ -293,7 +293,7 @@ public class PasswordValidatorTest {
         String password = null;
         boolean expected = false;
         //When
-        boolean actual = PasswordValidator.containsSpecialCharacter(password, new char[]{'&', '$'});
+        boolean actual = PasswordValidator.containsSpecialCharacter(password, "&!");
         //Then
         assertEquals(expected, actual);
     }
@@ -314,7 +314,7 @@ public class PasswordValidatorTest {
         //When
         boolean[] actual = new boolean[passwords.length];
         for(int i = 0; i < actual.length; i++) {
-            actual[i] = PasswordValidator.containsSpecialCharacter(passwords[i], new char[]{'&', '$'});
+            actual[i] = PasswordValidator.containsSpecialCharacter(passwords[i], "&$");
         }
 
         //Then
@@ -339,7 +339,7 @@ public class PasswordValidatorTest {
         //When
         boolean[] actual = new boolean[passwords.length];
         for(int i = 0; i < actual.length; i++) {
-            actual[i] = PasswordValidator.containsSpecialCharacter(passwords[i], new char[]{'&', '$'});
+            actual[i] = PasswordValidator.containsSpecialCharacter(passwords[i], "&$");
         }
 
         //Then
